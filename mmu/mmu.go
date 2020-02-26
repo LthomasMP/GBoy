@@ -4,34 +4,34 @@ type Byte uint8
 
 type Word uint16
 
-type MMU interface {
-	Read8(addr Word) Byte
-	Read16(addr Word) Word
-	Write8(addr Word, val Byte)
-	Write16(addr Word, val Word)
+type MMU struct {
+	InBios int
+	Rom    []Byte
+	Bios   []Byte
+	Wram   []Byte
+	Eram   []Byte
+	Zram   []Byte
 }
 
-type mmu struct {
+func NewMMU() *MMU {
+	return &MMU{
+		InBios: 1,
+		Rom:    []Byte{0},
+		Bios:   []Byte{0},
+		Wram:   []Byte{0},
+		Eram:   []Byte{0},
+		Zram:   []Byte{0},
+	}
 }
 
-func NewMMU() MMU {
-	return &mmu{}
+func (m *MMU) Write8(addr Word, val Byte) {
+	// Do something
 }
 
-func (m *mmu) Read8(addr Word) Byte {
-	var tmp Byte
-	return tmp
+func (m *MMU) Write16(addr Word, val Word) {
+	// Do something
 }
 
-func (m *mmu) Read16(addr Word) Word {
-	var tmp Word
-	return tmp
-}
-
-func (m *mmu) Write8(addr Word, val Byte) {
-
-}
-
-func (m *mmu) Write16(addr Word, val Word) {
-
+func (m *MMU) LoadROM(file string) {
+	// DO something
 }

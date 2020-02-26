@@ -21,15 +21,3 @@ func (cpu *CPU) add8(A, B mmu.Byte) mmu.Byte {
 func (cpu *CPU) nop() {
 	cpu.IncrementInternalClockNTime(1)
 }
-
-func (cpu *CPU) push(m mmu.MMU, r mmu.Byte) {
-	cpu.Reg.SP--
-	m.Write8(cpu.Reg.SP, r)
-	cpu.IncrementInternalClockNTime(2)
-}
-
-func (cpu *CPU) pop(m mmu.MMU, r mmu.Byte) {
-	r = m.Read8(cpu.Reg.SP)
-	cpu.Reg.SP++
-	cpu.IncrementInternalClockNTime(2)
-}
