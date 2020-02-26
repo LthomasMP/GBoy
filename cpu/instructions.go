@@ -4,7 +4,7 @@ import (
 	"github.com/lthomasmp/GBoy/mmu"
 )
 
-func (cpu *CPU) Add8(A, B mmu.Byte) mmu.Byte {
+func (cpu *CPU) add8(A, B mmu.Byte) mmu.Byte {
 	A += B
 	cpu.Reg.F = 0
 	if A&255 != 0 {
@@ -18,17 +18,17 @@ func (cpu *CPU) Add8(A, B mmu.Byte) mmu.Byte {
 	return A
 }
 
-func (cpu *CPU) NOP() {
+func (cpu *CPU) nop() {
 	cpu.IncrementInternalClockNTime(1)
 }
 
-func (cpu *CPU) Push(m mmu.MMU, r mmu.Byte) {
+func (cpu *CPU) push(m mmu.MMU, r mmu.Byte) {
 	cpu.Reg.SP--
 	m.Write8(cpu.Reg.SP, r)
 	cpu.IncrementInternalClockNTime(2)
 }
 
-func (cpu *CPU) Pop(m mmu.MMU, r mmu.Byte) {
+func (cpu *CPU) pop(m mmu.MMU, r mmu.Byte) {
 	r = m.Read8(cpu.Reg.SP)
 	cpu.Reg.SP++
 	cpu.IncrementInternalClockNTime(2)

@@ -9,8 +9,7 @@ func TestCPU_Add8(t *testing.T) {
 	cpu := NewCPU()
 	cpu.Reg.A = 42
 	cpu.Reg.B = 43
-	// TODO: Create a structure Register to simply such operations
-	cpu.Reg.A = cpu.Add8(cpu.Reg.A, cpu.Reg.B)
+	cpu.Reg.A = cpu.add8(cpu.Reg.A, cpu.Reg.B)
 	if cpu.Reg.A != 85 {
 		t.Errorf("expected %v in reg A", 85)
 	}
