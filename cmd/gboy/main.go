@@ -1,13 +1,12 @@
 package main
 
 import (
-	"golang.org/x/exp/shiny/driver"
-
-	gb2 "github.com/lthomasmp/GBoy/gb/gb"
+	"github.com/faiface/pixel/pixelgl"
+	"github.com/p4zuu/GBoy/gb/gb"
 )
 
 func main() {
-	gb := gb2.NewGB()
+	gb := gb.NewGB()
 
-	driver.Main(gb.Screen.Run)
+	pixelgl.Run(gb.Screen.Run)
 }
