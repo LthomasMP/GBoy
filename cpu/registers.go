@@ -1,18 +1,16 @@
 package cpu
 
-import "github.com/lthomasmp/GBoy/mmu"
-
 type Registers struct {
-	A                mmu.Byte
-	B                mmu.Byte
-	C                mmu.Byte
-	D                mmu.Byte
-	E                mmu.Byte
-	H                mmu.Byte
-	L                mmu.Byte
-	F                mmu.Byte
-	PC               mmu.Word
-	SP               mmu.Word
+	A                byte
+	B                byte
+	C                byte
+	D                byte
+	E                byte
+	H                byte
+	L                byte
+	F                byte
+	PC               uint16
+	SP               uint16
 	InstructionClock Clock
 }
 

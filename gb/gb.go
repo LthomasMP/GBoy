@@ -20,7 +20,7 @@ func NewGB() *GB {
 	}
 }
 
-func (gb *GB) Read8(addr mmu.Word) mmu.Byte {
+func (gb *GB) Read8(addr uint16) byte {
 	switch addr & 0xF000 {
 
 	// BIOS area
@@ -87,18 +87,18 @@ func (gb *GB) Read8(addr mmu.Word) mmu.Byte {
 	return 0
 }
 
-func (gb *GB) Read16(addr mmu.Word) mmu.Word {
+func (gb *GB) Read16(addr uint16) uint16 {
 	// FIXME: shifting a 8-bit value of 8 bits ??
-	return mmu.Word(gb.Read8(addr) + (gb.Read8(addr+1) << 8))
+	return uint16(gb.Read8(addr) + (gb.Read8(addr+1) << 8))
 }
 
-func (gb *GB) push(m mmu.MMU, r mmu.Byte) {
+func (gb *GB) push(m mmu.MMU, r byte) {
 	gb.Cpu.Reg.SP--
 	m.Write8(gb.Cpu.Reg.SP, r)
 	gb.Cpu.IncrementInternalClockNTime(2)
 }
 
-func (gb *GB) pop(r mmu.Byte) {
+func (gb *GB) pop(r byte) {
 	r = gb.Read8(gb.Cpu.Reg.SP)
 	gb.Cpu.Reg.SP++
 	gb.Cpu.IncrementInternalClockNTime(2)
