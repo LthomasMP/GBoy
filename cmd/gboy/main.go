@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/lthomasmp/GBoy/gb"
+	gb2 "github.com/lthomasmp/GBoy/gb/gb"
 )
 
 func main() {
-	gb := gb.NewGB()
+	gb := gb2.NewGB()
 
 	go gb.Dispatch()
 }

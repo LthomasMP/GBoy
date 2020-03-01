@@ -1,4 +1,4 @@
-package cpu
+package gb
 
 type CPU struct {
 	InternalClock Clock

@@ -1,4 +1,4 @@
-package gpu
+package gb
 
 type GPU struct {
 	Vram []byte

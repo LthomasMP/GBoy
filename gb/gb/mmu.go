@@ -1,22 +1,22 @@
 package gb
 
-import (
-	"github.com/lthomasmp/GBoy/cpu"
-	"github.com/lthomasmp/GBoy/gpu"
-	"github.com/lthomasmp/GBoy/mmu"
-)
-
-type GB struct {
-	Cpu *cpu.CPU
-	Mmu *mmu.MMU
-	Gpu *gpu.GPU
+type MMU struct {
+	InBios int
+	Rom    []byte
+	Bios   []byte
+	Wram   []byte
+	Eram   []byte
+	Zram   []byte
 }
 
-func NewGB() *GB {
-	return &GB{
-		Cpu: cpu.NewCPU(),
-		Mmu: mmu.NewMMU(),
-		Gpu: gpu.NewGPU(),
+func NewMMU() *MMU {
+	return &MMU{
+		InBios: 1,
+		Rom:    []byte{0},
+		Bios:   []byte{0},
+		Wram:   []byte{0},
+		Eram:   []byte{0},
+		Zram:   []byte{0},
 	}
 }
 
@@ -92,16 +92,12 @@ func (gb *GB) Read16(addr uint16) uint16 {
 	return uint16(gb.Read8(addr) + (gb.Read8(addr+1) << 8))
 }
 
-func (gb *GB) push(m mmu.MMU, r byte) {
-	gb.Cpu.Reg.SP--
-	m.Write8(gb.Cpu.Reg.SP, r)
-	gb.Cpu.IncrementInternalClockNTime(2)
+func (m *MMU) Write8(addr uint16, val byte) {
+	// Do something
 }
 
-func (gb *GB) pop(r byte) {
-	r = gb.Read8(gb.Cpu.Reg.SP)
-	gb.Cpu.Reg.SP++
-	gb.Cpu.IncrementInternalClockNTime(2)
+func (m *MMU) Write16(addr uint16, val uint16) {
+	// Do something
 }
 
 func (gb *GB) Dispatch() {

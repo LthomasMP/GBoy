@@ -1,4 +1,4 @@
-package cpu
+package gb
 
 type Registers struct {
 	A                byte

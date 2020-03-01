@@ -1,4 +1,4 @@
-package cpu
+package gb
 
 func (cpu *CPU) add8(A, B byte) byte {
 	A += B
@@ -16,4 +16,16 @@ func (cpu *CPU) add8(A, B byte) byte {
 
 func (cpu *CPU) nop() {
 	cpu.IncrementInternalClockNTime(1)
+}
+
+func (cpu *CPU) push(m MMU, r byte) {
+	cpu.Reg.SP--
+	m.Write8(cpu.Reg.SP, r)
+	cpu.IncrementInternalClockNTime(2)
+}
+
+func (gb *GB) pop(r byte) {
+	r = gb.Read8(gb.Cpu.Reg.SP)
+	gb.Cpu.Reg.SP++
+	gb.Cpu.IncrementInternalClockNTime(2)
 }
