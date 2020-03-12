@@ -10,6 +10,7 @@ type MMU struct {
 }
 
 func NewMMU() *MMU {
+	// TODO: add correct sizes
 	return &MMU{
 		InBios: 1,
 		Rom:    []byte{0},

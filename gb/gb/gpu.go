@@ -11,6 +11,7 @@ type GPU struct {
 }
 
 func NewGPU() *GPU {
+	// TODO: add correct sizes
 	return &GPU{
 		Vram:      []byte{0},
 		Oam:       []byte{0},
